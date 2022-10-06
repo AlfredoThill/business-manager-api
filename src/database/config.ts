@@ -12,7 +12,6 @@ export const db: Sequelize = new Sequelize({
     username: AppConfig.db.username,
     password: AppConfig.db.password,
     port: AppConfig.db.port,
-    timezone: AppConfig.db.timezone,
     dialect: AppConfig.db.dialect as Dialect,
     logging: AppConfig.db.isLogging ? customLog : false
 });
