@@ -16,10 +16,7 @@ interface UserAttributes {
 }
 
 export type UserInput = Optional<UserAttributes, 'id' | 'role'>;
-export type UserInputUpdate = Optional<
-    UserAttributes,
-    'id' | 'email' | 'password'
->;
+export type UserInputUpdate = Optional<UserAttributes, 'id' | 'email' | 'password'>;
 export type UserOutput = Optional<UserAttributes, 'role'>;
 
 class User extends Model<UserAttributes, UserInput> implements UserAttributes {

@@ -24,11 +24,7 @@ export function createServer(): Application {
     app.use(`/api/${AppConfig.app.apiVersion}`, routesV1);
 
     if (AppConfig.app.isDevelopment) {
-        app.use(
-            `/docs/${AppConfig.app.apiVersion}`,
-            swaggerUi.serve,
-            swaggerUi.setup(specs)
-        );
+        app.use(`/docs/${AppConfig.app.apiVersion}`, swaggerUi.serve, swaggerUi.setup(specs));
     }
 
     app.use(errorHandler);

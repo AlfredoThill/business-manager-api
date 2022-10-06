@@ -12,9 +12,7 @@ function startServer(): Server {
     const app = createServer();
 
     return app.listen(PORT, () => {
-        Logger.debug(
-            `App ${AppConfig.app.name} with api version ${AppConfig.app.apiVersion} is starting`
-        );
+        Logger.debug(`App ${AppConfig.app.name} with api version ${AppConfig.app.apiVersion} is starting`);
         Logger.debug(`App is listening on port ${PORT}`);
     });
 }

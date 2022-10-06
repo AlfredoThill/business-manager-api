@@ -9,8 +9,7 @@ const mockResource = {
             CASE_EXIST_USER_EMAIL: {
                 id: 1,
                 email: 'user@mail.com',
-                password:
-                    '$2b$05$bnaCGMUl/IYffmo9zku7c.AVDpdkJZPt.ZEIXsKULeQglPDyRU7Di',
+                password: '$2b$05$bnaCGMUl/IYffmo9zku7c.AVDpdkJZPt.ZEIXsKULeQglPDyRU7Di',
                 firstName: 'John',
                 lastName: 'Doe',
                 roleId: 1,
@@ -37,8 +36,7 @@ const mockResource = {
             CASE_EXIST_USER_EMAIL: {
                 id: 1,
                 email: 'user@mail.com',
-                password:
-                    '$2b$05$bnaCGMUl/IYffmo9zku7c.AVDpdkJZPt.ZEIXsKULeQglPDyRU7Di',
+                password: '$2b$05$bnaCGMUl/IYffmo9zku7c.AVDpdkJZPt.ZEIXsKULeQglPDyRU7Di',
                 firstName: 'John',
                 lastName: 'Doe',
                 roleId: 1,
@@ -46,13 +44,11 @@ const mockResource = {
                 updatedAt: '2022-08-26 14:40:19',
                 deletedAt: null
             },
-            BCRYPT_HASH_OUTPUT:
-                '$2b$05$bnaCGMUl/IYffmo9zku7c.AVDpdkJZPt.ZEIXsKULeQglPDyRU7Di',
+            BCRYPT_HASH_OUTPUT: '$2b$05$bnaCGMUl/IYffmo9zku7c.AVDpdkJZPt.ZEIXsKULeQglPDyRU7Di',
             POSITIVE_CASE_OUTPUT: {
                 id: 1,
                 email: 'user@mail.com',
-                password:
-                    '$2b$05$bnaCGMUl/IYffmo9zku7c.AVDpdkJZPt.ZEIXsKULeQglPDyRU7Di',
+                password: '$2b$05$bnaCGMUl/IYffmo9zku7c.AVDpdkJZPt.ZEIXsKULeQglPDyRU7Di',
                 firstName: 'John',
                 lastName: 'Doe',
                 roleId: 1,
@@ -118,8 +114,7 @@ const mockResource = {
             CASE_EXIST_USER_EMAIL: {
                 id: 1,
                 email: 'user@mail.com',
-                password:
-                    '$2b$05$bnaCGMUl/IYffmo9zku7c.AVDpdkJZPt.ZEIXsKULeQglPDyRU7Di',
+                password: '$2b$05$bnaCGMUl/IYffmo9zku7c.AVDpdkJZPt.ZEIXsKULeQglPDyRU7Di',
                 firstName: 'John',
                 lastName: 'Doe',
                 roleId: 1,
@@ -127,13 +122,11 @@ const mockResource = {
                 updatedAt: '2022-08-26 14:40:19',
                 deletedAt: null
             },
-            BCRYPT_HASH_OUTPUT:
-                '$2b$05$bnaCGMUl/IYffmo9zku7c.AVDpdkJZPt.ZEIXsKULeQglPDyRU7Di',
+            BCRYPT_HASH_OUTPUT: '$2b$05$bnaCGMUl/IYffmo9zku7c.AVDpdkJZPt.ZEIXsKULeQglPDyRU7Di',
             POSITIVE_CASE_OUTPUT: {
                 id: 1,
                 email: 'user@mail.com',
-                password:
-                    '$2b$05$bnaCGMUl/IYffmo9zku7c.AVDpdkJZPt.ZEIXsKULeQglPDyRU7Di',
+                password: '$2b$05$bnaCGMUl/IYffmo9zku7c.AVDpdkJZPt.ZEIXsKULeQglPDyRU7Di',
                 firstName: 'John',
                 lastName: 'Doe',
                 roleId: 1,

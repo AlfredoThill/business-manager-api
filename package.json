@@ -10,6 +10,7 @@
         "build": "tsc",
         "build-watch": "tsc -w",
         "lint": "eslint . --ext .ts",
+        "lint:fix": "eslint . --ext .ts --fix",
         "prettier": "prettier --config .prettierrc --write .",
         "test": "jest",
         "test:noCoverage": "jest --collectCoverage=false",

@@ -15,10 +15,8 @@ describe('UserRepository', () => {
 
         it('should return user created', async () => {
             //arrange
-            const mockInput =
-                mockResource.UserRepository.createUser.POSITIVE_CASE_INPUT;
-            const mockOutput =
-                mockResource.UserRepository.createUser.POSITIVE_CASE_OUTPUT;
+            const mockInput = mockResource.UserRepository.createUser.POSITIVE_CASE_INPUT;
+            const mockOutput = mockResource.UserRepository.createUser.POSITIVE_CASE_OUTPUT;
 
             MockedUser.create.mockResolvedValue(mockOutput);
 
@@ -39,10 +37,8 @@ describe('UserRepository', () => {
 
         it('should return list users', async () => {
             //arrange
-            const mockModelOptions =
-                mockResource.UserRepository.getUsers.MODEL_OPTIONS;
-            const mockOutput: any =
-                mockResource.UserRepository.getUsers.POSITIVE_CASE_OUTPUT;
+            const mockModelOptions = mockResource.UserRepository.getUsers.MODEL_OPTIONS;
+            const mockOutput: any = mockResource.UserRepository.getUsers.POSITIVE_CASE_OUTPUT;
 
             MockedUser.findAll.mockResolvedValue(mockOutput);
 
@@ -63,12 +59,9 @@ describe('UserRepository', () => {
 
         it('should return user detail', async () => {
             //arrange
-            const mockInput =
-                mockResource.UserRepository.getUserDetail.POSITIVE_CASE_INPUT;
-            const mockModelOptions =
-                mockResource.UserRepository.getUserDetail.MODEL_OPTIONS;
-            const mockOutput: any =
-                mockResource.UserRepository.getUserDetail.POSITIVE_CASE_OUTPUT;
+            const mockInput = mockResource.UserRepository.getUserDetail.POSITIVE_CASE_INPUT;
+            const mockModelOptions = mockResource.UserRepository.getUserDetail.MODEL_OPTIONS;
+            const mockOutput: any = mockResource.UserRepository.getUserDetail.POSITIVE_CASE_OUTPUT;
 
             MockedUser.findByPk.mockResolvedValue(mockOutput);
 
@@ -98,12 +91,9 @@ describe('UserRepository', () => {
 
         it('should return user detail', async () => {
             //arrange
-            const mockInput =
-                mockResource.UserRepository.getUserByEmail.POSITIVE_CASE_INPUT;
-            const mockModelOptions =
-                mockResource.UserRepository.getUserByEmail.MODEL_OPTIONS;
-            const mockOutput: any =
-                mockResource.UserRepository.getUserByEmail.POSITIVE_CASE_OUTPUT;
+            const mockInput = mockResource.UserRepository.getUserByEmail.POSITIVE_CASE_INPUT;
+            const mockModelOptions = mockResource.UserRepository.getUserByEmail.MODEL_OPTIONS;
+            const mockOutput: any = mockResource.UserRepository.getUserByEmail.POSITIVE_CASE_OUTPUT;
 
             MockedUser.findOne.mockResolvedValue(mockOutput);
 
@@ -124,30 +114,20 @@ describe('UserRepository', () => {
 
         it('should return update success', async () => {
             //arrange
-            const mockInput =
-                mockResource.UserRepository.updateUser.POSITIVE_CASE_INPUT;
-            const mockModelOptions =
-                mockResource.UserRepository.updateUser.MODEL_OPTIONS;
-            const mockModelOutput: any =
-                mockResource.UserRepository.updateUser.POSITIVE_MODEL_OUTPUT;
-            const mockOutput =
-                mockResource.UserRepository.updateUser.POSITIVE_CASE_OUTPUT;
+            const mockInput = mockResource.UserRepository.updateUser.POSITIVE_CASE_INPUT;
+            const mockModelOptions = mockResource.UserRepository.updateUser.MODEL_OPTIONS;
+            const mockModelOutput: any = mockResource.UserRepository.updateUser.POSITIVE_MODEL_OUTPUT;
+            const mockOutput = mockResource.UserRepository.updateUser.POSITIVE_CASE_OUTPUT;
 
             MockedUser.update.mockResolvedValue(mockModelOutput);
 
             //act
-            const result = await UserRepository.updateUser(
-                mockInput.userId,
-                mockInput.payload
-            );
+            const result = await UserRepository.updateUser(mockInput.userId, mockInput.payload);
 
             //assert
             expect(result).toEqual(mockOutput);
             expect(MockedUser.update).toHaveBeenCalledTimes(1);
-            expect(MockedUser.update).toBeCalledWith(
-                mockInput.payload,
-                mockModelOptions
-            );
+            expect(MockedUser.update).toBeCalledWith(mockInput.payload, mockModelOptions);
         });
     });
 
@@ -158,14 +138,10 @@ describe('UserRepository', () => {
 
         it('should return delete success', async () => {
             //arrange
-            const mockInput =
-                mockResource.UserRepository.deleteUser.POSITIVE_CASE_INPUT;
-            const mockModelOptions =
-                mockResource.UserRepository.deleteUser.MODEL_OPTIONS;
-            const mockModelOutput: any =
-                mockResource.UserRepository.deleteUser.POSITIVE_MODEL_OUTPUT;
-            const mockOutput =
-                mockResource.UserRepository.deleteUser.POSITIVE_CASE_OUTPUT;
+            const mockInput = mockResource.UserRepository.deleteUser.POSITIVE_CASE_INPUT;
+            const mockModelOptions = mockResource.UserRepository.deleteUser.MODEL_OPTIONS;
+            const mockModelOutput: any = mockResource.UserRepository.deleteUser.POSITIVE_MODEL_OUTPUT;
+            const mockOutput = mockResource.UserRepository.deleteUser.POSITIVE_CASE_OUTPUT;
 
             MockedUser.destroy.mockResolvedValue(mockModelOutput);
 

@@ -14,10 +14,8 @@ describe('RoleRepository', () => {
 
         it('should return role created', async () => {
             //arrange
-            const mockInput =
-                mockResource.RoleRepository.createRole.POSITIVE_CASE_INPUT;
-            const mockOutput =
-                mockResource.RoleRepository.createRole.POSITIVE_CASE_OUTPUT;
+            const mockInput = mockResource.RoleRepository.createRole.POSITIVE_CASE_INPUT;
+            const mockOutput = mockResource.RoleRepository.createRole.POSITIVE_CASE_OUTPUT;
 
             MockedRole.create.mockResolvedValue(mockOutput);
 
@@ -38,8 +36,7 @@ describe('RoleRepository', () => {
 
         it('should return list roles', async () => {
             //arrange
-            const mockOutput: any =
-                mockResource.RoleRepository.getRoles.POSITIVE_CASE_OUTPUT;
+            const mockOutput: any = mockResource.RoleRepository.getRoles.POSITIVE_CASE_OUTPUT;
 
             MockedRole.findAll.mockResolvedValue(mockOutput);
 
@@ -60,12 +57,9 @@ describe('RoleRepository', () => {
 
         it('should return role detail', async () => {
             //arrange
-            const mockInput =
-                mockResource.RoleRepository.getRoleBySlug.POSITIVE_CASE_INPUT;
-            const mockModelOptions =
-                mockResource.RoleRepository.getRoleBySlug.MODEL_OPTIONS;
-            const mockOutput: any =
-                mockResource.RoleRepository.getRoleBySlug.POSITIVE_CASE_OUTPUT;
+            const mockInput = mockResource.RoleRepository.getRoleBySlug.POSITIVE_CASE_INPUT;
+            const mockModelOptions = mockResource.RoleRepository.getRoleBySlug.MODEL_OPTIONS;
+            const mockOutput: any = mockResource.RoleRepository.getRoleBySlug.POSITIVE_CASE_OUTPUT;
 
             MockedRole.findOne.mockResolvedValue(mockOutput);
 

@@ -17,19 +17,13 @@ describe('RoleService', () => {
 
         it('should return role created', async () => {
             //arrange
-            const mockInput =
-                mockResource.RoleService.createRole.POSITIVE_CASE_INPUT;
-            const mockOutputSlugify =
-                mockResource.RoleService.createRole.SLUGIFY_OUTPUT;
-            const mockOutputRoleSlug =
-                mockResource.RoleService.createRole.CASE_NULL_ROLE_SLUG;
-            const mockOutput: any =
-                mockResource.RoleService.createRole.POSITIVE_CASE_OUTPUT;
+            const mockInput = mockResource.RoleService.createRole.POSITIVE_CASE_INPUT;
+            const mockOutputSlugify = mockResource.RoleService.createRole.SLUGIFY_OUTPUT;
+            const mockOutputRoleSlug = mockResource.RoleService.createRole.CASE_NULL_ROLE_SLUG;
+            const mockOutput: any = mockResource.RoleService.createRole.POSITIVE_CASE_OUTPUT;
 
             MockedSlugify.mockReturnValue(mockOutputSlugify);
-            MockedRoleRepository.getRoleBySlug.mockResolvedValue(
-                mockOutputRoleSlug
-            );
+            MockedRoleRepository.getRoleBySlug.mockResolvedValue(mockOutputRoleSlug);
             MockedRoleRepository.createRole.mockResolvedValue(mockOutput);
 
             //act
@@ -41,9 +35,7 @@ describe('RoleService', () => {
             expect(MockedSlugify).toBeCalledWith(mockInput.name);
 
             expect(MockedRoleRepository.getRoleBySlug).toHaveBeenCalledTimes(1);
-            expect(MockedRoleRepository.getRoleBySlug).toBeCalledWith(
-                mockOutputSlugify
-            );
+            expect(MockedRoleRepository.getRoleBySlug).toBeCalledWith(mockOutputSlugify);
 
             expect(MockedRoleRepository.createRole).toHaveBeenCalledTimes(1);
             expect(MockedRoleRepository.createRole).toBeCalledWith({
@@ -54,19 +46,13 @@ describe('RoleService', () => {
 
         it('should return error role exist', () => {
             //arrange
-            const mockInput =
-                mockResource.RoleService.createRole.POSITIVE_CASE_INPUT;
-            const mockOutputSlugify =
-                mockResource.RoleService.createRole.SLUGIFY_OUTPUT;
-            const mockOutputRoleSlug: any =
-                mockResource.RoleService.createRole.CASE_EXIST_ROLE_SLUG;
-            const errorMessage =
-                mockResource.RoleService.createRole.ERROR_MESSAGE;
+            const mockInput = mockResource.RoleService.createRole.POSITIVE_CASE_INPUT;
+            const mockOutputSlugify = mockResource.RoleService.createRole.SLUGIFY_OUTPUT;
+            const mockOutputRoleSlug: any = mockResource.RoleService.createRole.CASE_EXIST_ROLE_SLUG;
+            const errorMessage = mockResource.RoleService.createRole.ERROR_MESSAGE;
 
             MockedSlugify.mockReturnValue(mockOutputSlugify);
-            MockedRoleRepository.getRoleBySlug.mockResolvedValue(
-                mockOutputRoleSlug
-            );
+            MockedRoleRepository.getRoleBySlug.mockResolvedValue(mockOutputRoleSlug);
 
             //act
             const result = RoleService.createRole(mockInput);
@@ -77,9 +63,7 @@ describe('RoleService', () => {
             expect(MockedSlugify).toBeCalledWith(mockInput.name);
 
             expect(MockedRoleRepository.getRoleBySlug).toHaveBeenCalledTimes(1);
-            expect(MockedRoleRepository.getRoleBySlug).toBeCalledWith(
-                mockOutputSlugify
-            );
+            expect(MockedRoleRepository.getRoleBySlug).toBeCalledWith(mockOutputSlugify);
         });
     });
 
@@ -90,8 +74,7 @@ describe('RoleService', () => {
 
         it('should return list roles', async () => {
             //arrange
-            const mockOutput: any =
-                mockResource.RoleService.getRoles.POSITIVE_CASE_OUTPUT;
+            const mockOutput: any = mockResource.RoleService.getRoles.POSITIVE_CASE_OUTPUT;
 
             MockedRoleRepository.getRoles.mockResolvedValue(mockOutput);
 

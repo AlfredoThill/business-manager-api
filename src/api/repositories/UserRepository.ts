@@ -42,10 +42,7 @@ class UserRepository implements IUserRepository {
         });
     }
 
-    async updateUser(
-        userId: number,
-        payload: UserInputUpdate
-    ): Promise<boolean> {
+    async updateUser(userId: number, payload: UserInputUpdate): Promise<boolean> {
         const [updatedUserCount] = await User.update(payload, {
             where: {
                 id: userId
