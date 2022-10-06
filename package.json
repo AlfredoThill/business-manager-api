@@ -1,7 +1,7 @@
 {
-    "name": "project-structure-api",
-    "version": "2.0.0",
-    "description": "Project structure for API",
+    "name": "business-manager-api",
+    "version": "0.0.0",
+    "description": "",
     "main": "dist/index.js",
     "scripts": {
         "prepare": "husky install",
@@ -16,26 +16,7 @@
         "test:noCoverage": "jest --collectCoverage=false",
         "sync-db": "node dist/database/sync"
     },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/arifintahu/project-structure-api.git"
-    },
-    "keywords": [
-        "nodejs",
-        "typescript",
-        "boilerplate",
-        "project"
-    ],
-    "author": {
-        "name": "Miftahul Arifin",
-        "email": "miftahul97@gmail.com",
-        "url": "https://github.com/arifintahu"
-    },
     "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/arifintahu/project-structure-api/issues"
-    },
-    "homepage": "https://github.com/arifintahu/project-structure-api#readme",
     "dependencies": {
         "bcrypt": "^5.0.1",
         "compression": "^1.7.4",
