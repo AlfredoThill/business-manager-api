@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import AuthService from '../services/AuthService';
-import { LoginType, SignUpType } from '../types/auth';
+import { LoginType } from '../types/auth';
 
 async function login(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
@@ -15,19 +15,6 @@ async function login(req: Request, res: Response, next: NextFunction): Promise<v
     }
 }
 
-async function signUp(req: Request, res: Response, next: NextFunction): Promise<void> {
-    try {
-        const payload: SignUpType = req.body;
-        await AuthService.signUp(payload);
-        res.status(200).send({
-            message: 'Signed up successfully'
-        });
-    } catch (error) {
-        next(error);
-    }
-}
-
 export default {
-    login,
-    signUp
+    login
 };

@@ -6,9 +6,9 @@
     "scripts": {
         "prepare": "husky install",
         "start": "node .",
-        "start-watch": "nodemon --delay 5000ms --exec npm run start",
+        "start:watch": "nodemon --delay 5000ms --exec npm run start",
         "build": "tsc",
-        "build-watch": "tsc -w",
+        "build:watch": "tsc -w",
         "lint": "eslint . --ext .ts",
         "lint:fix": "eslint . --ext .ts --fix",
         "prettier": "prettier --config .prettierrc --write .",

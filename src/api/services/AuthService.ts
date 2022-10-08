@@ -1,6 +1,6 @@
 import * as bcrypt from 'bcrypt';
 import UserRepository from '../repositories/UserRepository';
-import { UserInput, UserOutput } from '../models/User';
+import { UserInput } from '../models/User';
 import JWT from '../../utils/jwt';
 
 async function login(payload: UserInput): Promise<string> {
@@ -25,22 +25,6 @@ async function login(payload: UserInput): Promise<string> {
     return token;
 }
 
-async function signUp(payload: UserInput): Promise<UserOutput> {
-    const user = await UserRepository.getUserByEmail(payload.email);
-
-    if (user) {
-        throw new Error('Email must be unique');
-    }
-
-    const hashedPassword = bcrypt.hashSync(payload.password, 5);
-
-    return UserRepository.createUser({
-        ...payload,
-        password: hashedPassword
-    });
-}
-
 export default {
-    login,
-    signUp
+    login
 };
