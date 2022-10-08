@@ -5,8 +5,8 @@
     "main": "dist/index.js",
     "scripts": {
         "prepare": "husky install",
-        "start": "node .",
-        "start:watch": "nodemon --delay 5000ms --exec npm run start",
+        "start": "npm run build && node .",
+        "start:dev": "npm run build && concurrently \"npm run build:watch\" \"nodemon --delay 5000ms --exec node .\"",
         "build": "tsc",
         "build:watch": "tsc -w",
         "lint": "eslint . --ext .ts",
@@ -20,6 +20,7 @@
     "dependencies": {
         "bcrypt": "^5.0.1",
         "compression": "^1.7.4",
+        "concurrently": "^7.4.0",
         "cors": "^2.8.5",
         "dotenv": "^10.0.0",
         "express": "^4.17.1",

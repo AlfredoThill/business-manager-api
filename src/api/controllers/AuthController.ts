@@ -8,7 +8,7 @@ async function login(req: Request, res: Response, next: NextFunction): Promise<v
         const token = await AuthService.login(payload);
         res.status(200).send({
             message: 'Logged in successfully',
-            data: token
+            token
         });
     } catch (error) {
         next(error);

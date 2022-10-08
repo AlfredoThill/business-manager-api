@@ -2,6 +2,7 @@
     "compilerOptions": {
         "module": "commonjs",
         "moduleResolution": "node",
+        "sourceMap": true,
         "target": "es2017",
         "rootDir": "./src",
         "outDir": "./dist",
@@ -11,5 +12,5 @@
         "typeRoots": ["node_modules/@types", "./src/@types/index.d.ts"]
     },
     "include": ["src/**/*"],
-    "exclude": ["node_modules", "src/**/__test__"]
+    "exclude": ["node_modules", "src/**/test"]
 }

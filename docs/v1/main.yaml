@@ -24,6 +24,10 @@
         responses:
             200:
                 $ref: '#/components/responses/200'
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/loginMessage'
             400:
                 $ref: '#/components/responses/400'
             401:
@@ -32,3 +36,15 @@
                 $ref: '#/components/responses/403'
             422:
                 $ref: '#/components/responses/422'
+components:
+    schemas:
+        loginMessage:
+            type: object
+            properties:
+                message:
+                type: string
+                token:
+                data: string
+            example:
+                message: 'Logged in successfully'
+                token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'

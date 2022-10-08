@@ -62,7 +62,7 @@ User.init(
         tableName: 'users',
         freezeTableName: true,
         timestamps: true,
-        paranoid: true,
+        // paranoid: true,
         sequelize: db
     }
 );

@@ -48,7 +48,7 @@ Role.init(
         tableName: 'roles',
         freezeTableName: true,
         timestamps: true,
-        paranoid: true,
+        // paranoid: true,
         sequelize: db
     }
 );
