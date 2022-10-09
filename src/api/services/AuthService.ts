@@ -7,19 +7,25 @@ async function login(payload: UserInput): Promise<string> {
     const user = await UserRepository.getUserByEmail(payload.email);
 
     if (!user) {
-        throw new Error('User not found');
+        const err = new Error('User not found');
+        err.status = 400;
+        throw err;
     }
 
     const isValid = bcrypt.compareSync(payload.password, user.password);
 
     if (!isValid) {
-        throw new Error('Email and Password is not match');
+        const err = new Error('Email and Password is not match');
+        err.status = 400;
+        throw err;
     }
 
     const token = await JWT.signToken(user.id);
 
     if (!token) {
-        throw new Error('Invalid token');
+        const err = new Error('Invalid token');
+        err.status = 401;
+        throw err;
     }
 
     return token;

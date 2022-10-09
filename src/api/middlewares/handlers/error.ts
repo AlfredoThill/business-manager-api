@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import AppConfig from '../../../config/appConfig';
 import Logger from '../../../utils/logger';
 
@@ -6,7 +6,7 @@ type ResponseType = {
     message?: string;
 };
 
-function errorHandler(err: Error, req: Request, res: Response): void {
+function errorHandler(err: Error, req: Request, res: Response, next: NextFunction): void {
     const response: ResponseType = {};
     if (err.message) {
         const logs = {
@@ -23,7 +23,7 @@ function errorHandler(err: Error, req: Request, res: Response): void {
         response.message = AppConfig.app.isDevelopment ? err.message : 'Something wrong!';
     }
 
-    res.status(422).send(response);
+    res.status(err.status || 500).send(response);
 }
 
 export default errorHandler;
