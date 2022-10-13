@@ -65,7 +65,7 @@ class UserRepository implements IUserRepository {
 
     // async updateUserPrivileges(userId: number, payload: number[]): Promise<boolean> {
     //     const user = await User.findByPk(userId);
-    //     user.add
+    //     user.addPrivilege()
     // }
 
     async deleteUser(userId: number): Promise<boolean> {

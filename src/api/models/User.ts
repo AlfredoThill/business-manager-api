@@ -1,4 +1,4 @@
-import { Model, DataTypes, Optional } from 'sequelize';
+import { Model, DataTypes, Optional, BelongsToManyAddAssociationMixin } from 'sequelize';
 import { db } from '../../database/config';
 import Role, { RoleOutput } from './Role';
 import Privilege from './Privilege';
@@ -28,6 +28,8 @@ class User extends Model<UserAttributes, UserInput> implements UserAttributes {
     public lastName!: string;
     public email!: string;
     public password!: string;
+
+    // public addPrivilege!: BelongsToManyAddAssociationMixin;
 
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
