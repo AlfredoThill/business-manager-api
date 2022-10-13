@@ -9,12 +9,15 @@ import { db } from './database/config';
 
 const PORT = AppConfig.app.port;
 
-function startServer(): Server {
+const myArgs = process.argv.slice(2);
+
+async function start(): Promise<Server> {
     const app = createServer();
 
-    process.argv.forEach(function (val, index, array) {
-        console.log(index + ': ' + val);
-    });
+    if (myArgs[0] === '--migrate') {
+        await db.sync({ force: true });
+        process.exit();
+    }
 
     return app.listen(PORT, () => {
         Logger.debug(`App ${AppConfig.app.name} with api version ${AppConfig.app.apiVersion} is starting`);
@@ -22,4 +25,4 @@ function startServer(): Server {
     });
 }
 
-startServer();
+start();

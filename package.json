@@ -14,7 +14,7 @@
         "prettier": "prettier --config .prettierrc --write .",
         "test": "jest",
         "test:noCoverage": "jest --collectCoverage=false",
-        "db:sync": "node . -migrate"
+        "db:sync": "node . --migrate"
     },
     "license": "ISC",
     "dependencies": {
