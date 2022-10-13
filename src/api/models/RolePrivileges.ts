@@ -1,21 +1,21 @@
 import { Model, DataTypes } from 'sequelize';
 import { db } from '../../database/config';
 
-interface UserPrivilegeAttributes {
+interface RolePrivilegeAttributes {
     id: number;
-    user_id: number;
+    role_id: number;
     privilege_id: number;
     createdAt?: Date;
     updatedAt?: Date;
     deletedAt?: Date;
 }
 
-export type UserPrivilegeInput = UserPrivilegeAttributes;
-export type UserPrivilegeOutput = Required<UserPrivilegeAttributes>;
+export type RolePrivilegeInput = RolePrivilegeAttributes;
+export type RolePrivilegeOutput = Required<RolePrivilegeAttributes>;
 
-class UserPrivilege extends Model<UserPrivilegeAttributes, UserPrivilegeInput> implements UserPrivilegeAttributes {
+class RolePrivilege extends Model<RolePrivilegeAttributes, RolePrivilegeInput> implements RolePrivilegeAttributes {
     public id!: number;
-    public user_id!: number;
+    public role_id!: number;
     public privilege_id!: number;
 
     public readonly createdAt!: Date;
@@ -23,14 +23,14 @@ class UserPrivilege extends Model<UserPrivilegeAttributes, UserPrivilegeInput> i
     public readonly deletedAt!: Date;
 }
 
-UserPrivilege.init(
+RolePrivilege.init(
     {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
-        user_id: {
+        role_id: {
             type: DataTypes.INTEGER,
             allowNull: false
         },
@@ -40,7 +40,7 @@ UserPrivilege.init(
         }
     },
     {
-        tableName: 'user_privileges',
+        tableName: 'role_privileges',
         freezeTableName: true,
         timestamps: true,
         // paranoid: true,
@@ -48,4 +48,4 @@ UserPrivilege.init(
     }
 );
 
-export default UserPrivilege;
+export default RolePrivilege;

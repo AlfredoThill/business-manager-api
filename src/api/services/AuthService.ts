@@ -8,7 +8,7 @@ async function login(payload: UserInput): Promise<string> {
 
     if (!user) {
         const err = new Error('User not found');
-        err.status = 400;
+        err.status = 404;
         throw err;
     }
 

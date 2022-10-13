@@ -1,5 +1,6 @@
 import User, { UserInput, UserInputUpdate, UserOutput } from '../models/User';
 import Role from '../models/Role';
+import Privilege from '../models/Privilege';
 
 interface IUserRepository {
     createUser(payload: UserInput): Promise<UserOutput>;
@@ -7,6 +8,7 @@ interface IUserRepository {
     getUserDetail(userId: number): Promise<UserOutput | null>;
     getUserByEmail(email: string): Promise<UserOutput | null>;
     updateUser(userId: number, payload: UserInputUpdate): Promise<boolean>;
+    // updateUserPrivileges(userId: number): Promise<boolean>;
     deleteUser(userId: number): Promise<boolean>;
 }
 
@@ -28,7 +30,17 @@ class UserRepository implements IUserRepository {
                 {
                     model: Role,
                     as: 'role',
-                    required: false
+                    required: false,
+                    include: [
+                        {
+                            model: Privilege,
+                            as: 'role_privileges'
+                        }
+                    ]
+                },
+                {
+                    model: Privilege,
+                    as: 'user_custom_privileges'
                 }
             ]
         });
@@ -50,6 +62,11 @@ class UserRepository implements IUserRepository {
         });
         return !!updatedUserCount;
     }
+
+    // async updateUserPrivileges(userId: number, payload: number[]): Promise<boolean> {
+    //     const user = await User.findByPk(userId);
+    //     user.add
+    // }
 
     async deleteUser(userId: number): Promise<boolean> {
         const deletedUserCount = await User.destroy({

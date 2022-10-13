@@ -27,7 +27,20 @@ async function getRoles(req: Request, res: Response, next: NextFunction): Promis
     }
 }
 
+async function deleteRole(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+        const roleId = Number(req.params.id);
+        await RoleService.deleteRole(roleId);
+        res.status(200).send({
+            message: 'Role deleted successfully'
+        });
+    } catch (error) {
+        next(error);
+    }
+}
+
 export default {
     createRole,
-    getRoles
+    getRoles,
+    deleteRole
 };

@@ -76,6 +76,7 @@ User.belongsTo(Role, {
     foreignKey: 'roleId',
     as: 'role'
 });
+
 User.belongsToMany(Privilege, {
     through: UserPrivileges,
     foreignKey: {
