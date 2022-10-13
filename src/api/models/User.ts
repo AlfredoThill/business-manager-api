@@ -1,6 +1,8 @@
 import { Model, DataTypes, Optional } from 'sequelize';
 import { db } from '../../database/config';
 import Role, { RoleOutput } from './Role';
+import Privilege from './Privilege';
+import UserPrivileges from './UserPrivileges';
 
 interface UserAttributes {
     id: number;
@@ -40,13 +42,16 @@ User.init(
             autoIncrement: true
         },
         roleId: {
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER,
+            allowNull: false
         },
         firstName: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            allowNull: false
         },
         lastName: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            allowNull: false
         },
         email: {
             type: DataTypes.STRING,
@@ -70,6 +75,15 @@ User.init(
 User.belongsTo(Role, {
     foreignKey: 'roleId',
     as: 'role'
+});
+User.belongsToMany(Privilege, {
+    through: UserPrivileges,
+    foreignKey: {
+        name: 'user_id'
+    },
+    otherKey: {
+        name: 'privilege_id'
+    }
 });
 
 export default User;
