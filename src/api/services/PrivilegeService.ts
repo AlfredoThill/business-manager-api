@@ -19,6 +19,10 @@ function getPrivileges(): Promise<PrivilegeOutput[]> {
     return PrivilegeRepository.getPrivileges();
 }
 
+function getPrivilegeById(privilegeId: number): Promise<PrivilegeOutput | null> {
+    return PrivilegeRepository.getPrivilegeById(privilegeId);
+}
+
 function updatePrivilege(privilegeId: number, payload: PrivilegeInputUpdate): Promise<boolean> {
     return PrivilegeRepository.updatePrivilege(privilegeId, payload);
 }
@@ -30,6 +34,7 @@ function deletePrivilege(privilegeId: number): Promise<boolean> {
 export default {
     createPrivilege,
     getPrivileges,
+    getPrivilegeById,
     updatePrivilege,
     deletePrivilege
 };

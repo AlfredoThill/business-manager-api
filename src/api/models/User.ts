@@ -1,4 +1,14 @@
-import { Model, DataTypes, Optional, BelongsToManyAddAssociationMixin } from 'sequelize';
+import {
+    Model,
+    DataTypes,
+    Optional,
+    BelongsToManyGetAssociationsMixin,
+    BelongsToManySetAssociationsMixin,
+    BelongsToManyAddAssociationMixin,
+    BelongsToManyAddAssociationsMixin,
+    BelongsToManyRemoveAssociationMixin,
+    BelongsToManyRemoveAssociationsMixin
+} from 'sequelize';
 import { db } from '../../database/config';
 import Role, { RoleOutput } from './Role';
 import Privilege from './Privilege';
@@ -29,7 +39,12 @@ class User extends Model<UserAttributes, UserInput> implements UserAttributes {
     public email!: string;
     public password!: string;
 
-    // public addPrivilege!: BelongsToManyAddAssociationMixin;
+    public getPrivileges!: BelongsToManyGetAssociationsMixin<Privilege>;
+    public setPrivileges!: BelongsToManySetAssociationsMixin<Privilege | number, { through: UserPrivileges }>;
+    public addPrivilege!: BelongsToManyAddAssociationMixin<Privilege | number, { through: UserPrivileges }>;
+    public addPrivileges!: BelongsToManyAddAssociationsMixin<Privilege | number, { through: UserPrivileges }>;
+    public removePrivilege!: BelongsToManyRemoveAssociationMixin<Privilege | number, { through: UserPrivileges }>;
+    public removePrivileges!: BelongsToManyRemoveAssociationsMixin<Privilege | number, { through: UserPrivileges }>;
 
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;

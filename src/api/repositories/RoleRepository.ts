@@ -1,13 +1,19 @@
 import Role, { RoleInput, RoleInputUpdate, RoleOutput } from '../models/Role';
 import Privilege from '../models/Privilege';
+import Logger from '../../utils/logger/index';
 
 interface IRoleRepository {
     createRole(payload: RoleInput): Promise<RoleOutput>;
     getRoles(): Promise<RoleOutput[]>;
     updateRole(roleId: number, payload: RoleInputUpdate): Promise<boolean>;
     getRoleBySlug(slug: string): Promise<RoleOutput | null>;
+    getRoleById(roleId: number): Promise<Role | null>;
     getRoleDetails(roleId: number): Promise<RoleOutput | null>;
     deleteRole(roleId: number): Promise<boolean>;
+    getRolePrivileges(role: Role): Promise<Privilege[]>;
+    setRolePrivileges(role: Role, privilegesArr: Privilege[] | number[]): Promise<void>;
+    addRolePrivileges(role: Role, privilegesArr: Privilege[] | number[]): Promise<void>;
+    removeRolePrivileges(role: Role, privilegesArr: Privilege[] | number[]): Promise<void>;
 }
 
 class RoleRepository implements IRoleRepository {
@@ -36,6 +42,10 @@ class RoleRepository implements IRoleRepository {
         });
     }
 
+    getRoleById(roleId: number): Promise<Role | null> {
+        return Role.findByPk(roleId);
+    }
+
     getRoleDetails(roleId: number): Promise<RoleOutput | null> {
         return Role.findByPk(roleId, {
             attributes: ['id', 'name', 'slug', 'description'],
@@ -55,6 +65,22 @@ class RoleRepository implements IRoleRepository {
             }
         });
         return !!deletedRoleCount;
+    }
+
+    async getRolePrivileges(role: Role): Promise<Privilege[]> {
+        return role.getPrivileges();
+    }
+
+    async setRolePrivileges(role: Role, privilegesArr: Privilege[] | number[]): Promise<void> {
+        return role.setPrivileges(privilegesArr);
+    }
+
+    async addRolePrivileges(role: Role, privilegesArr: Privilege[] | number[]): Promise<void> {
+        return await role.addPrivileges(privilegesArr);
+    }
+
+    async removeRolePrivileges(role: Role, privilegesArr: Privilege[] | number[]): Promise<void> {
+        return await role.removePrivileges(privilegesArr);
     }
 }
 

@@ -1,4 +1,14 @@
-import { Model, DataTypes, Optional } from 'sequelize';
+import {
+    Model,
+    DataTypes,
+    Optional,
+    BelongsToManyGetAssociationsMixin,
+    BelongsToManySetAssociationsMixin,
+    BelongsToManyAddAssociationMixin,
+    BelongsToManyAddAssociationsMixin,
+    BelongsToManyRemoveAssociationMixin,
+    BelongsToManyRemoveAssociationsMixin
+} from 'sequelize';
 import { db } from '../../database/config';
 import Privilege from './Privilege';
 import RolePrivilege from './RolePrivileges';
@@ -22,6 +32,13 @@ class Role extends Model<RoleAttributes, RoleInput> implements RoleAttributes {
     public name!: string;
     public slug!: string;
     public description!: string;
+
+    public getPrivileges!: BelongsToManyGetAssociationsMixin<Privilege>;
+    public setPrivileges!: BelongsToManySetAssociationsMixin<Privilege | number, { through: RolePrivilege }>;
+    public addPrivilege!: BelongsToManyAddAssociationMixin<Privilege | number, { through: RolePrivilege }>;
+    public addPrivileges!: BelongsToManyAddAssociationsMixin<Privilege | number, { through: RolePrivilege }>;
+    public removePrivilege!: BelongsToManyRemoveAssociationMixin<Privilege | number, { through: RolePrivilege }>;
+    public removePrivileges!: BelongsToManyRemoveAssociationsMixin<Privilege | number, { through: RolePrivilege }>;
 
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
