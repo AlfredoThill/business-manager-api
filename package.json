@@ -6,7 +6,7 @@
     "scripts": {
         "prepare": "husky install",
         "start": "npm run build && node .",
-        "start:dev": "npm run build && concurrently \"npm run build:watch\" \"nodemon --delay 5000ms --exec node .\"",
+        "dev": "npm run build && concurrently \"npm run build:watch\" \"nodemon --delay 5000ms --exec node .\"",
         "build": "tsc",
         "build:watch": "tsc -w",
         "lint": "eslint . --ext .ts",

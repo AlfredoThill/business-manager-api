@@ -62,24 +62,4 @@ Privilege.init(
     }
 );
 
-Privilege.belongsToMany(User, {
-    through: UserPrivilege,
-    foreignKey: {
-        name: 'privilege_id'
-    },
-    otherKey: {
-        name: 'user_id'
-    }
-});
-
-Privilege.belongsToMany(Role, {
-    through: RolePrivilege,
-    foreignKey: {
-        name: 'privilege_id'
-    },
-    otherKey: {
-        name: 'role_id'
-    }
-});
-
 export default Privilege;
