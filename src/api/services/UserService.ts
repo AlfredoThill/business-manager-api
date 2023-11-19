@@ -1,6 +1,7 @@
 import * as bcrypt from 'bcrypt';
 import UserRepository from '../repositories/UserRepository';
-import { UserInput, UserInputUpdate, UserOutput } from '../models/User';
+import User, { UserInput, UserInputUpdate, UserOutput } from '../models/User';
+import Privilege from '../models/Privilege';
 
 async function createUser(payload: UserInput): Promise<UserOutput> {
     const user = await UserRepository.getUserByEmail(payload.email);
@@ -36,11 +37,11 @@ async function getUserDetail(userId: number): Promise<UserOutput> {
 }
 
 async function updateUser(userId: number, payload: UserInputUpdate): Promise<boolean> {
-    const user = await UserRepository.getUserDetail(userId);
+    const user = await UserRepository.getUserById(userId);
 
     if (!user) {
         const err = new Error('User not found');
-        err.status = 400;
+        err.status = 404;
         throw err;
     }
 
@@ -48,15 +49,69 @@ async function updateUser(userId: number, payload: UserInputUpdate): Promise<boo
 }
 
 async function deleteUser(userId: number): Promise<boolean> {
-    const user = await UserRepository.getUserDetail(userId);
+    const user = await UserRepository.getUserById(userId);
 
     if (!user) {
         const err = new Error('User not found');
-        err.status = 400;
+        err.status = 404;
         throw err;
     }
 
     return UserRepository.deleteUser(userId);
+}
+
+async function getUserPrivileges(userId: number): Promise<Privilege[]> {
+    const user = await UserRepository.getUserById(userId);
+
+    if (!user) {
+        const err = new Error('User not found');
+        err.status = 404;
+        throw err;
+    }
+
+    return UserRepository.getUserPrivileges(user);
+}
+
+async function setUserPrivileges(userId: number, privilegesArr: Privilege[] | number[]): Promise<boolean> {
+    const user = await UserRepository.getUserById(userId);
+
+    if (!user) {
+        const err = new Error('User not found');
+        err.status = 404;
+        throw err;
+    }
+
+    await UserRepository.setUserPrivileges(user, privilegesArr);
+
+    return true;
+}
+
+async function addUserPrivileges(userId: number, privilegesArr: Privilege[] | number[]): Promise<boolean> {
+    const user = await UserRepository.getUserById(userId);
+
+    if (!user) {
+        const err = new Error('User not found');
+        err.status = 404;
+        throw err;
+    }
+
+    await UserRepository.addUserPrivileges(user, privilegesArr);
+
+    return true;
+}
+
+async function removeUserPrivileges(userId: number, privilegesArr: Privilege[] | number[]): Promise<boolean> {
+    const user = await UserRepository.getUserById(userId);
+
+    if (!user) {
+        const err = new Error('User not found');
+        err.status = 404;
+        throw err;
+    }
+
+    await UserRepository.removeUserPrivileges(user, privilegesArr);
+
+    return true;
 }
 
 export default {
@@ -64,5 +119,9 @@ export default {
     getUsers,
     getUserDetail,
     updateUser,
-    deleteUser
+    deleteUser,
+    getUserPrivileges,
+    setUserPrivileges,
+    addUserPrivileges,
+    removeUserPrivileges
 };

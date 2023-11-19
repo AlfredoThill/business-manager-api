@@ -3,6 +3,7 @@ import Privilege, { PrivilegeInput, PrivilegeInputUpdate, PrivilegeOutput } from
 interface IPrivilegeRepository {
     createPrivilege(payload: PrivilegeInput): Promise<PrivilegeOutput>;
     getPrivilegeByName(name: string): Promise<PrivilegeOutput | null>;
+    getPrivilegeById(privilegeId: number): Promise<PrivilegeOutput | null>;
     getPrivileges(): Promise<PrivilegeOutput[]>;
     updatePrivilege(privilegeId: number, payload: PrivilegeInputUpdate): Promise<boolean>;
     deletePrivilege(privilegeId: number): Promise<boolean>;
@@ -19,6 +20,10 @@ class PrivilegeRepository implements IPrivilegeRepository {
                 name
             }
         });
+    }
+
+    getPrivilegeById(privilegeId: number): Promise<PrivilegeOutput | null> {
+        return Privilege.findByPk(privilegeId);
     }
 
     getPrivileges(): Promise<PrivilegeOutput[]> {

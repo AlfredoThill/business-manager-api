@@ -1,15 +1,20 @@
 import User, { UserInput, UserInputUpdate, UserOutput } from '../models/User';
 import Role from '../models/Role';
 import Privilege from '../models/Privilege';
+import Logger from '../../utils/logger/index';
 
 interface IUserRepository {
     createUser(payload: UserInput): Promise<UserOutput>;
     getUsers(): Promise<UserOutput[]>;
     getUserDetail(userId: number): Promise<UserOutput | null>;
+    getUserById(userId: number): Promise<User | null>;
     getUserByEmail(email: string): Promise<UserOutput | null>;
     updateUser(userId: number, payload: UserInputUpdate): Promise<boolean>;
-    // updateUserPrivileges(userId: number): Promise<boolean>;
     deleteUser(userId: number): Promise<boolean>;
+    getUserPrivileges(user: User): Promise<Privilege[]>;
+    setUserPrivileges(user: User, privilegesArr: Privilege[] | number[]): Promise<void>;
+    addUserPrivileges(user: User, privilegesArr: Privilege[] | number[]): Promise<void>;
+    removeUserPrivileges(user: User, privilegesArr: Privilege[] | number[]): Promise<void>;
 }
 
 class UserRepository implements IUserRepository {
@@ -46,6 +51,10 @@ class UserRepository implements IUserRepository {
         });
     }
 
+    getUserById(userId: number): Promise<User | null> {
+        return User.findByPk(userId);
+    }
+
     getUserByEmail(email: string): Promise<UserOutput | null> {
         return User.findOne({
             where: {
@@ -63,11 +72,6 @@ class UserRepository implements IUserRepository {
         return !!updatedUserCount;
     }
 
-    // async updateUserPrivileges(userId: number, payload: number[]): Promise<boolean> {
-    //     const user = await User.findByPk(userId);
-    //     user.addPrivilege()
-    // }
-
     async deleteUser(userId: number): Promise<boolean> {
         const deletedUserCount = await User.destroy({
             where: {
@@ -75,6 +79,22 @@ class UserRepository implements IUserRepository {
             }
         });
         return !!deletedUserCount;
+    }
+
+    async getUserPrivileges(user: User): Promise<Privilege[]> {
+        return user.getPrivileges();
+    }
+
+    async setUserPrivileges(user: User, privilegesArr: Privilege[] | number[]): Promise<void> {
+        return user.setPrivileges(privilegesArr);
+    }
+
+    async addUserPrivileges(user: User, privilegesArr: Privilege[] | number[]): Promise<void> {
+        return user.addPrivileges(privilegesArr);
+    }
+
+    async removeUserPrivileges(user: User, privilegesArr: Privilege[] | number[]): Promise<void> {
+        return await user.removePrivileges(privilegesArr);
     }
 }
 
