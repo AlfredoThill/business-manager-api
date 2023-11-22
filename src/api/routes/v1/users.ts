@@ -8,7 +8,8 @@ const usersRouter: Router = Router();
 
 usersRouter
     .route('/')
-    .post(Auth.authenticate, Validate(Requirements.createUsers), Auth.checkRoles(ROLE.ADMIN), UserController.createUser)
+    // .post(Auth.authenticate, Validate(Requirements.createUsers), Auth.checkRoles(ROLE.ADMIN), UserController.createUser)
+    .post(Validate(Requirements.createUsers), UserController.createUser)
     .get(Auth.authenticate, Auth.checkRoles(ROLE.ADMIN), UserController.getUsers);
 
 usersRouter
